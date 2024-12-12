@@ -4,5 +4,5 @@ export interface Employee {
     designation: string;
     email: string;
     phone: string;
-    manager: string;
+    manager: Employee | null;
   }

@@ -9,16 +9,20 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { EmployeeComponent } from './employee/employee/employee.component';
 import { TableViewComponent } from './employee/table-view/table-view.component';
 import { employeeReducer } from './state/employee/employee.reducers';
+import { AddReporteeComponent } from './employee/add-reportee/add-reportee.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeComponent,
-    TableViewComponent
+    TableViewComponent,
+    AddReporteeComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     ClarityModule,
     StoreModule.forRoot({ employeeState: employeeReducer }, {}),

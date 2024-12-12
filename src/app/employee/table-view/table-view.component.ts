@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { EMPLOYEES } from './employee';
 import { Employee } from '../employee.interface';
 import { Observer } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectAllEmployees } from 'src/app/state/employee/employee.selectors';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-view',
@@ -11,11 +12,14 @@ import { selectAllEmployees } from 'src/app/state/employee/employee.selectors';
   styleUrls: ['./table-view.component.scss']
 })
 export class TableViewComponent {
+
+  @Input() employeeList: Employee[] | null = [];
+  @Output() add = new EventEmitter<Employee>();
+  
   employees: Employee[] = []; // Array to store all employees
-  paginatedEmployees$ = this.store.select(selectAllEmployees); // Subset for current page
   loading: boolean = false;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private router: Router) {}
 
   ngOnInit(): void {
     this.loadEmployees();
@@ -25,7 +29,7 @@ export class TableViewComponent {
     // Simulate fetching data from a server
     this.loading = true;
     setTimeout(() => {
-      this.employees = EMPLOYEES;
+      //this.employees = EMPLOYEES;
       //this.paginatedEmployees$ = this.employees.slice(0, 5); // Initialize first page
       this.loading = false;
     }, 1000);
@@ -37,7 +41,9 @@ export class TableViewComponent {
 
   // Context Menu Actions
   addReportee(employee: Employee) {
-    alert(`Add Reportee for: ${employee.name}`);
+    //alert(`Add Reportee for: ${employee.name}`);
+    //this.router.navigate(['add'], { state: employee});
+    this.add.emit(employee);
   }
 
   editDetails(employee: Employee) {

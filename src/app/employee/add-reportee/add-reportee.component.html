@@ -1,0 +1,98 @@
+<!-- Clarity Design Modal -->
+<clr-modal [(clrModalOpen)]="showDialog" [clrModalSize]="'md'">
+  <h3 class="modal-title">Add Reportee</h3>
+  <div class="modal-body">
+    <div *ngIf="selectedEmployee" class="clr-form clr-form-compact">
+
+      <form [formGroup]="reporteeForm">
+
+        <!-- Manager Name -->
+        <clr-input-container>
+            <label for="manager">Manager Name</label>
+            <input
+                id="manager"
+                clrInput
+                [value]="selectedEmployee.name"
+                formControlName="manager"
+                readonly
+            />
+            </clr-input-container>
+
+        <!-- Employee Name -->
+        <clr-input-container>
+          <label for="name">Employee Name</label>
+          <input
+            id="name"
+            clrInput
+            formControlName="name"
+            placeholder="Enter employee name"
+            required
+          />
+          <clr-control-error *ngIf="reporteeForm.get('name')?.hasError('required')">
+            Employee Name is required.
+          </clr-control-error>
+        </clr-input-container>
+
+        <!-- Designation Dropdown -->
+        <clr-select-container>
+            <label for="designation">Designation</label>
+            <select
+              id="designation"
+              clrSelect
+              formControlName="designation"
+              required
+            >
+              <option value="">Select a designation</option>
+              <option *ngFor="let designation of designations" [value]="designation">
+                {{ designation }}
+              </option>
+            </select>
+            <clr-control-error *ngIf="reporteeForm.get('designation')?.hasError('required')">
+                Designation is required.
+              </clr-control-error>
+          </clr-select-container>
+
+        <!-- Email -->
+        <clr-input-container>
+          <label for="email">Email</label>
+          <input
+            id="email"
+            clrInput
+            formControlName="email"
+            placeholder="Enter email address"
+            required
+          />
+          <clr-control-error *ngIf="reporteeForm.get('email')?.hasError('required')">
+            Email is required.
+          </clr-control-error>
+          <clr-control-error *ngIf="reporteeForm.get('email')?.hasError('email')">
+            Please enter a valid email address.
+          </clr-control-error>
+        </clr-input-container>
+
+        <!-- Phone Number -->
+        <clr-input-container>
+          <label for="phone">Phone Number</label>
+          <input
+            id="phone"
+            clrInput
+            formControlName="phone"
+            placeholder="Enter 10-digit phone number"
+            required
+          />
+          <clr-control-error *ngIf="reporteeForm.get('phone')?.hasError('required')">
+            Phone Number is required.
+          </clr-control-error>
+          <clr-control-error *ngIf="reporteeForm.get('phone')?.hasError('pattern')">
+            Please enter a valid 10-digit phone number.
+          </clr-control-error>
+        </clr-input-container>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-outline" (click)="onCancel()">Cancel</button>
+    <button class="btn btn-primary" (click)="onAddReportee()">Add Reportee</button>
+  </div>
+</clr-modal>

@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Employee } from "src/app/employee/employee.interface";
-import { addEmployee } from "./employee.actions";
+import { addReportee } from "./employee.actions";
 import { EMPLOYEES } from "src/app/employee/table-view/employee";
 
 export interface EmployeeState {
@@ -16,10 +16,10 @@ const initialState: EmployeeState = {
 }
 export const employeeReducer = createReducer(
     initialState,
-    on(addEmployee, (state,  { employee }) => {
+    on(addReportee, (state,  { employee }) => {
         return {
             ...state,
-            employees: [...state.employees, {...employee, status: 'success', id: 1}]
+            employees: [...state.employees, {...employee, status: 'success', id: state.employees.length + 1}]
         }
     })
 )

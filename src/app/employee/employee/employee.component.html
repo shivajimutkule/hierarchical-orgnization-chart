@@ -12,7 +12,10 @@
       </div>
  </div>
     
-      <div>
-        <app-table-view></app-table-view>
+    <div>
+      <app-table-view [employeeList]="paginatedEmployees$ | async" (add)="addReportee($event)"></app-table-view>
     </div>
+
+    <!-- Add Reportee Component -->
+    <app-add-reportee #addReporteeDialog (closeDialog)="closeAddReporteeDialog()"></app-add-reportee>
 </div>

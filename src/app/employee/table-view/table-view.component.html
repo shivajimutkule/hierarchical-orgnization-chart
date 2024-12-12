@@ -9,7 +9,7 @@
     <clr-dg-column>Manager</clr-dg-column>
   
     <!-- Data Rows -->
-    <clr-dg-row *ngFor="let employee of paginatedEmployees$ | async">
+    <clr-dg-row *ngFor="let employee of employeeList">
         <!-- Context Menu in Actions Column -->
     <clr-dg-cell>
         <clr-dropdown>
@@ -30,7 +30,7 @@
       <clr-dg-cell>{{ employee.designation }}</clr-dg-cell>
       <clr-dg-cell>{{ employee.email }}</clr-dg-cell>
       <clr-dg-cell>{{ employee.phone }}</clr-dg-cell>
-      <clr-dg-cell>{{ employee.manager }}</clr-dg-cell>
+      <clr-dg-cell>{{ employee.manager == null ? '' : (employee.manager.name + (employee.manager.id)) }}</clr-dg-cell>
     </clr-dg-row>
   
     <!-- Pagination -->

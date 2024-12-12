@@ -10,6 +10,6 @@ export const selectEmployeeState = createFeatureSelector<EmployeeState>(
   // Select all employees
   export const selectAllEmployees = createSelector(
     selectEmployeeState,
-    (state: EmployeeState) => state.employees
+    (state: EmployeeState) => state ? state?.employees ?? [] : []
   );
   
