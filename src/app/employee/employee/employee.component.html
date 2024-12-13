@@ -1,21 +1,38 @@
 <div class="main-container">
- <div  class="clr-row" class="container text-center">
+ <div  class="clr-row" class="tab-margin container text-center">
     <div class="btn-group btn-outline-primary">
-        <button class="btn">
+        <button class="btn"
+        routerLink="/employee/graph" 
+        routerLinkActive="active-button"
+        [routerLinkActiveOptions]="{ exact: true }">
           <cds-icon shape="home"></cds-icon>
-          Home
+          Graph View
         </button>
-        <button class="btn">
+        <button class="btn"
+        routerLink="/employee/grid" 
+        routerLinkActive="active-button"
+        [routerLinkActiveOptions]="{ exact: true }">
           <cds-icon shape="cog"></cds-icon>
-          Settings
+          Grid View
         </button>
       </div>
  </div>
     
-    <div>
+    <!-- <div>
+
       <app-table-view [employeeList]="paginatedEmployees$ | async" (add)="addReportee($event)"></app-table-view>
+    </div> -->
+
+    <div class="container">
+      <router-outlet></router-outlet>
     </div>
 
     <!-- Add Reportee Component -->
     <app-add-reportee #addReporteeDialog (closeDialog)="closeAddReporteeDialog()"></app-add-reportee>
+
+    <!-- Edit Employee Component -->
+    <app-edit-employee #editEmployeeDialog (closeDialog)="closeAddReporteeDialog()"></app-edit-employee>
+
+    <!-- Delete Employee Component -->
+    <app-delete-employee #deleteEmployeeDialog (closeDialog)="closeAddReporteeDialog()"></app-delete-employee>
 </div>

@@ -1,0 +1,9 @@
+<div class="graph-view">
+    <h2>Graph View</h2>
+    <p>Display the employee data in a graph format here.</p>
+    <ul>
+      <li *ngFor="let employee of employees$ | async">
+        {{ employee.name }} - {{ employee.designation }}
+      </li>
+    </ul>
+  </div>

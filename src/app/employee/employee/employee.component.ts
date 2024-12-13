@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { Employee } from '../employee.interface';
 import { Store } from '@ngrx/store';
-import { selectAllEmployees } from 'src/app/state/employee/employee.selectors';
 import { AddReporteeComponent } from '../add-reportee/add-reportee.component';
-import { catchError, Observable, startWith } from 'rxjs';
+import { EmployeeService } from 'src/app/services/employee.service';
+import { EditEmployeeComponent } from '../edit-employee/edit-employee.component';
+import { DeleteEmployeeComponent } from '../delete-employee/delete-employee.component';
 
 @Component({
   selector: 'app-employee',
@@ -11,16 +12,30 @@ import { catchError, Observable, startWith } from 'rxjs';
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent {
-  paginatedEmployees$: Observable<Employee[]> = this.store.select(selectAllEmployees).pipe(
-    startWith([]), // Emit an empty array as the initial value
-    catchError(() => [])
-  ); // Subset for current page
+  
+  @ViewChild("addReporteeDialog") addReporteeDialog!: AddReporteeComponent;
 
-  constructor(private store: Store) {
+  @ViewChild("editEmployeeDialog") editEmployeeDialog!: EditEmployeeComponent;
+
+  @ViewChild("deleteEmployeeDialog") deleteEmployeeDialog!: DeleteEmployeeComponent;
+
+  constructor(private store: Store, private employeeService: EmployeeService) {
+    // Subscribe to the openAddReporteeDialog$ observable
+    this.employeeService.openAddReporteeDialog$.subscribe((employee) => {
+      this.addReportee(employee);
+    });
+
+    // Subscribe to the openEditEmployeeDialog$ observable
+    this.employeeService.openEditEmployeeDialog$.subscribe((employee) => {
+      this.editEmployee(employee);
+    });
     
+    // Subscribe to the openEditEmployeeDialog$ observable
+    this.employeeService.openDeleteEmployeeDialog$.subscribe((employee) => {
+      this.deleteEmployee(employee);
+    });
   }
 
-  @ViewChild("addReporteeDialog") addReporteeDialog!: AddReporteeComponent;
 
 
   closeAddReporteeDialog(): void {
@@ -31,4 +46,15 @@ export class EmployeeComponent {
     console.log(employee);
     this.addReporteeDialog.open(employee);
   }
+
+  editEmployee(employee: Employee) {
+    console.log(employee);
+    this.editEmployeeDialog.open(employee);
+  }
+
+  deleteEmployee(employee: Employee) {
+    console.log(employee);
+    this.deleteEmployeeDialog.open(employee);
+  }
+
 }

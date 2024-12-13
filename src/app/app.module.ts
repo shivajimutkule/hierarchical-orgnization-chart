@@ -11,13 +11,19 @@ import { TableViewComponent } from './employee/table-view/table-view.component';
 import { employeeReducer } from './state/employee/employee.reducers';
 import { AddReporteeComponent } from './employee/add-reportee/add-reportee.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GraphViewComponent } from './employee/graph-view/graph-view.component';
+import { EditEmployeeComponent } from './employee/edit-employee/edit-employee.component';
+import { DeleteEmployeeComponent } from './employee/delete-employee/delete-employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeComponent,
     TableViewComponent,
-    AddReporteeComponent
+    AddReporteeComponent,
+    GraphViewComponent,
+    EditEmployeeComponent,
+    DeleteEmployeeComponent
   ],
   imports: [
     BrowserModule,

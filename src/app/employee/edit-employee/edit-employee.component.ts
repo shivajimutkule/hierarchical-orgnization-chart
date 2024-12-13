@@ -1,16 +1,16 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Employee } from '../employee.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../state/app.state'; // Adjust the path to your AppState
-import { addReportee } from '../../state/employee/employee.actions'; // Adjust the path to your action file
-import { Employee } from '../employee.interface';
+import { AppState } from 'src/app/state/app.state';
+import { editEmployee } from 'src/app/state/employee/employee.actions';
 
 @Component({
-  selector: 'app-add-reportee',
-  templateUrl: './add-reportee.component.html',
-  styleUrls: ['./add-reportee.component.scss'],
+  selector: 'app-edit-employee',
+  templateUrl: './edit-employee.component.html',
+  styleUrls: ['./edit-employee.component.scss']
 })
-export class AddReporteeComponent {
+export class EditEmployeeComponent {
   public showDialog = false; // Receive dialog state from parent
   public selectedEmployee!: Employee;
 
@@ -38,14 +38,16 @@ export class AddReporteeComponent {
 
   open(selectedEmployee: Employee) {
     this.selectedEmployee = selectedEmployee;
+    this.reporteeForm.patchValue(selectedEmployee);
     this.showDialog = true;
   }
 
   onAddReportee(): void {
     if (this.reporteeForm.valid) {
       const reporteeData = this.reporteeForm.value;
-      reporteeData.manager = this.selectedEmployee;
-      this.store.dispatch(addReportee({ employee: reporteeData })); // Dispatch action
+      reporteeData.id = this.selectedEmployee.id;
+      console.log(reporteeData);
+      this.store.dispatch(editEmployee({ employee: reporteeData })); // Dispatch action
       this.showDialog = false;
 
       this.closeDialog.emit(); // Notify parent to close dialog

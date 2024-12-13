@@ -1,0 +1,10 @@
+<clr-modal [(clrModalOpen)]="isDeleteDialogOpen" [clrModalClosable]="false">
+    <h3 class="modal-title">Delete Employee</h3>
+    <div class="modal-body">
+      <p>Are you sure you want to delete the employee <strong>{{ selectedEmployee?.name }}</strong>?</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" (click)="closeDialog()">Cancel</button>
+      <button class="btn btn-danger" (click)="confirmDelete()">Delete</button>
+    </div>
+  </clr-modal>
