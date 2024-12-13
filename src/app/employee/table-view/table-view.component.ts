@@ -34,6 +34,6 @@ export class TableViewComponent {
   }
 
   changeReportingLine(employee: Employee) {
-    alert(`Change Reporting Line for: ${employee.name}`);
+    this.employeeService.triggerOpenChangeManagerDialog(employee);
   }
 }

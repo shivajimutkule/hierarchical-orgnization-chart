@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { GraphViewComponent } from './employee/graph-view/graph-view.component';
 import { EditEmployeeComponent } from './employee/edit-employee/edit-employee.component';
 import { DeleteEmployeeComponent } from './employee/delete-employee/delete-employee.component';
+import { ChangeManagerComponent } from './employee/change-manager/change-manager.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DeleteEmployeeComponent } from './employee/delete-employee/delete-emplo
     AddReporteeComponent,
     GraphViewComponent,
     EditEmployeeComponent,
-    DeleteEmployeeComponent
+    DeleteEmployeeComponent,
+    ChangeManagerComponent
   ],
   imports: [
     BrowserModule,

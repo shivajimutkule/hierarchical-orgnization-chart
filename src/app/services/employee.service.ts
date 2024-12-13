@@ -10,17 +10,17 @@ import { deleteEmployee } from '../state/employee/employee.actions';
 export class EmployeeService {
 
   private openAddReporteeSubject = new Subject<Employee>();
-  // Observable to notify when to open the dialog
   openAddReporteeDialog$ = this.openAddReporteeSubject.asObservable();
 
   private openEditEmployeeSubject = new Subject<Employee>();
-  // Observable to notify when to open the dialog
   openEditEmployeeDialog$ = this.openEditEmployeeSubject.asObservable();
 
 
   private openDeleteEmployeeSubject = new Subject<Employee>();
-  // Observable to notify when to open the dialog
   openDeleteEmployeeDialog$ = this.openDeleteEmployeeSubject.asObservable();
+
+  private openChangeManagerSubject = new Subject<Employee>();
+  openChangeManagerDialog$ = this.openChangeManagerSubject.asObservable();
 
   constructor(private store: Store) {
     
@@ -36,5 +36,9 @@ export class EmployeeService {
 
   triggerOpenDeleteEmployeeDialog(employee: Employee) {
     this.openDeleteEmployeeSubject.next(employee);
+  }
+
+  triggerOpenChangeManagerDialog(employee: Employee) {
+    this.openChangeManagerSubject.next(employee);
   }
 }

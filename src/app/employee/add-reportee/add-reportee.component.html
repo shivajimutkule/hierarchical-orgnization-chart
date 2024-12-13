@@ -1,5 +1,5 @@
 <!-- Clarity Design Modal -->
-<clr-modal [(clrModalOpen)]="showDialog" [clrModalSize]="'md'">
+<clr-modal [(clrModalOpen)]="showDialog" [clrModalSize]="'md'" [clrModalPreventClose]="true" (clrModalAlternateClose)="onCancel()">
   <h3 class="modal-title">Add Reportee</h3>
   <div class="modal-body">
     <div class="text-justify light-color">Add a new employee who will report directly to this person. Provide details like name, designation, email and phone number to create their profile in organization chart.</div>

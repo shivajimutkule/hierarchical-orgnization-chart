@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Employee } from "src/app/employee/employee.interface";
-import { addReportee, deleteEmployee, editEmployee } from "./employee.actions";
+import { addReportee, changeManager, deleteEmployee, editEmployee } from "./employee.actions";
 import { EMPLOYEES } from "src/app/employee/table-view/employee";
 
 export interface EmployeeState {
@@ -53,5 +53,22 @@ export const employeeReducer = createReducer(
                 : e // Keep other employees unchanged
             ),
         };
-    })
+    }),
+
+    on(changeManager, (state,  { id, managerId }) => {
+        // Find the manager
+        const manager = state.employees.find((e) => e.id === managerId);
+
+        // If the employee doesn't exist, return the current state
+        if (!manager) {
+            return state;
+            }
+
+        return {
+            ...state,
+            employees: state.employees.map((e) =>
+                e.id === id ? { ...e, manager } : e
+              ),
+        }
+    }),
 )

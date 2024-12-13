@@ -1,5 +1,5 @@
 <!-- Clarity Design Modal -->
-<clr-modal [(clrModalOpen)]="showDialog" [clrModalSize]="'md'">
+<clr-modal [(clrModalOpen)]="showDialog" [clrModalSize]="'md'" [clrModalPreventClose]="true" (clrModalAlternateClose)="onCancel()">
     <h3 class="modal-title">Edit Employee</h3>
     <div class="modal-body">
       <div class="text-justify light-color">Edit employee details like name, designation, email and phone number to update their profile in organization chart.</div>

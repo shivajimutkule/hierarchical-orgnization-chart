@@ -1,0 +1,43 @@
+<clr-modal [(clrModalOpen)]="isChangeManagerDialogOpen" [clrModalPreventClose]="true" (clrModalAlternateClose)="closeDialog()">
+    <h3 class="modal-title">Change Employee Reporting Line</h3>
+    <div class="modal-body">
+      <div class="text-justify light-color">Reassing this employee to report to a new manager. Select the desired manager from the available options to update the reporting hierarchy in the organization chart.</div>
+      <form clrForm clrLayout="horizontal" [formGroup]="reporteeForm">
+        <clr-input-container>
+          <label class="clr-col-2 clr-col-md-3" for="manager">Employee Name</label>
+          <input
+              class="clr-col-10 clr-col-md-9"
+              id="manager"
+              clrInput
+              [value]="selectedEmployee?.name"
+              readonly
+          />
+          </clr-input-container>
+
+        <!-- Designation Dropdown -->
+        <clr-select-container>
+            <label for="designation">Manager Name</label>
+            <select
+              id="manager"
+              clrSelect
+              formControlName="manager"
+              required
+            >
+              <option value="">Select New Reporting Manager</option>
+              <ng-container *ngFor="let manager of managers$ | async">
+                <option *ngIf="manager?.id != selectedEmployee?.id && manager?.id != selectedEmployee?.manager?.id" [ngValue]="manager">
+                  {{ manager.name }}
+                </option>
+              </ng-container>
+            </select>
+            <clr-control-error *ngIf="reporteeForm.get('manager')?.hasError('required')">
+                Manager name is required.
+              </clr-control-error>
+          </clr-select-container>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" (click)="closeDialog()">Cancel</button>
+      <button class="btn btn-primary" (click)="confirmChangeManager()">Change Reporting</button>
+    </div>
+  </clr-modal>
