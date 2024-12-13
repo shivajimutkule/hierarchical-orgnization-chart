@@ -1,7 +1,19 @@
 <clr-modal [(clrModalOpen)]="isDeleteDialogOpen" [clrModalClosable]="false">
     <h3 class="modal-title">Delete Employee</h3>
     <div class="modal-body">
-      <p>Are you sure you want to delete the employee <strong>{{ selectedEmployee?.name }}</strong>?</p>
+      <div class="text-justify light-color">Deleting this employee will reassign all their direct reportees to the employee's manager. Confirm this action to remove the employee from organization chart and update the reporting hierarchy accordingly</div>
+      <form clrForm clrLayout="horizontal">
+        <clr-input-container>
+          <label class="clr-col-2 clr-col-md-3" for="manager">Manager Name</label>
+          <input
+              class="clr-col-10 clr-col-md-9"
+              id="manager"
+              clrInput
+              [value]="selectedEmployee?.name"
+              readonly
+          />
+          </clr-input-container>
+      </form>
     </div>
     <div class="modal-footer">
       <button class="btn btn-outline" (click)="closeDialog()">Cancel</button>

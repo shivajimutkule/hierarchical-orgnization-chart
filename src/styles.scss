@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 clr-datagrid {
     margin: 20px;
-  }
+}
+
+.light-color {
+  color: var(--clr-forms-subtext-color);
+}

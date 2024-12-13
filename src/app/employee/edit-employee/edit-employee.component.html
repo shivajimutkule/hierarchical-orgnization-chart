@@ -2,8 +2,8 @@
 <clr-modal [(clrModalOpen)]="showDialog" [clrModalSize]="'md'">
     <h3 class="modal-title">Edit Employee</h3>
     <div class="modal-body">
+      <div class="text-justify light-color">Edit employee details like name, designation, email and phone number to update their profile in organization chart.</div>
       <div *ngIf="selectedEmployee" class="clr-form clr-form-compact">
-  
         <form [formGroup]="reporteeForm">
   
           <!-- Manager Name -->
@@ -12,7 +12,7 @@
               <input
                   id="manager"
                   clrInput
-                  [value]="selectedEmployee.manager?.name"
+                  [value]="selectedEmployee.manager?.name ?? '-'"
                   readonly
               />
               </clr-input-container>
@@ -24,7 +24,7 @@
               id="name"
               clrInput
               formControlName="name"
-              placeholder="Enter employee name"
+              placeholder="Enter Employee Name"
               required
             />
             <clr-control-error *ngIf="reporteeForm.get('name')?.hasError('required')">
@@ -41,7 +41,7 @@
                 formControlName="designation"
                 required
               >
-                <option value="">Select a designation</option>
+                <option value="">Select Employee Designation</option>
                 <option *ngFor="let designation of designations" [value]="designation">
                   {{ designation }}
                 </option>
@@ -53,12 +53,12 @@
   
           <!-- Email -->
           <clr-input-container>
-            <label for="email">Email</label>
+            <label for="email">Email ID</label>
             <input
               id="email"
               clrInput
               formControlName="email"
-              placeholder="Enter email address"
+              placeholder="Enter Email ID"
               required
             />
             <clr-control-error *ngIf="reporteeForm.get('email')?.hasError('required')">
@@ -76,7 +76,7 @@
               id="phone"
               clrInput
               formControlName="phone"
-              placeholder="Enter 10-digit phone number"
+              placeholder="Enter Phone Number"
               required
             />
             <clr-control-error *ngIf="reporteeForm.get('phone')?.hasError('required')">

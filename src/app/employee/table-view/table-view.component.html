@@ -1,6 +1,5 @@
-<clr-datagrid [clrDgLoading]="loading">
+<clr-datagrid [clrDgLoading]="loading" [clrDgSelected]="[]" *ngIf="(employees$ | async) as employees">
     <!-- Employee Name Column -->
-    <clr-dg-column [style.width.px]="15"></clr-dg-column>
     <clr-dg-column>Employee Name</clr-dg-column>
     <clr-dg-column>Employee ID</clr-dg-column>
     <clr-dg-column>Designation</clr-dg-column>
@@ -9,35 +8,29 @@
     <clr-dg-column>Manager</clr-dg-column>
   
     <!-- Data Rows -->
-    <clr-dg-row *ngFor="let employee of employeeList | async">
+    <clr-dg-row  *clrDgItems="let employee of employees" [clrDgItem]="employee">
         <!-- Context Menu in Actions Column -->
-    <clr-dg-cell>
-        <clr-dropdown>
-          <button clrDropdownTrigger class="btn btn-link">
-            <cds-icon shape="ellipsis-vertical"></cds-icon>
-          </button>
-          <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-            <button clrDropdownItem (click)="addReportee(employee)">Add Reportee</button>
-            <button clrDropdownItem (click)="editDetails(employee)">Edit Details</button>
-            <button clrDropdownItem (click)="deleteEmployee(employee)">Delete Employee</button>
-            <button clrDropdownItem (click)="changeReportingLine(employee)">Change Reporting Line</button>
-          </clr-dropdown-menu>
-        </clr-dropdown>
-      </clr-dg-cell>
+      <clr-dg-action-overflow
+        [clrDgActionOverflowButtonLabel]="clrDgActionOverflowButtonLabel"
+        >
+          <button class="action-item" (click)="addReportee(employee)">Add Reportee</button>
+          <button class="action-item" (click)="editDetails(employee)">Edit Details</button>
+          <button class="action-item" (click)="deleteEmployee(employee)">Delete Employee</button>
+          <button class="action-item" (click)="changeReportingLine(employee)">Change Reporting Line</button>
+      </clr-dg-action-overflow>
 
       <clr-dg-cell>{{ employee.name }}</clr-dg-cell>
       <clr-dg-cell>{{ employee.id }}</clr-dg-cell>
       <clr-dg-cell>{{ employee.designation }}</clr-dg-cell>
       <clr-dg-cell>{{ employee.email }}</clr-dg-cell>
       <clr-dg-cell>{{ employee.phone }}</clr-dg-cell>
-      <clr-dg-cell>{{ employee.manager == null ? '' : (employee.manager.name + ' (' + employee.manager.id + ')') }}</clr-dg-cell>
+      <clr-dg-cell>{{ employee.manager == null ? '-' : (employee.manager.name + ' (' + employee.manager.id + ')') }}</clr-dg-cell>
     </clr-dg-row>
   
     <!-- Pagination -->
     <clr-dg-footer>
-      <clr-dg-pagination #pagination [clrDgPageSize]="5">
-        <clr-dg-page-size [clrPageSizeOptions]="[5, 10, 20]">Items per page</clr-dg-page-size>
-        {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of {{ employees.length }} items
+      <span style="float: left;">{{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} / {{ pagination.totalItems }}</span>
+      <clr-dg-pagination #pagination>
       </clr-dg-pagination>
     </clr-dg-footer>
   </clr-datagrid>

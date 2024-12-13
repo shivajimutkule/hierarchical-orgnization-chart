@@ -22,11 +22,15 @@ const routes: Routes = [{
       },
       {
         path: '', // Default route when no child is selected
-        redirectTo: 'graph', // Default to Graph view
+        redirectTo: 'grid', // Default to Graph view
         pathMatch: 'full',
       },
     ],
-  }]
+  }, {
+    path: '', // Default route when no child is selected
+    redirectTo: 'employee', // Default to Employee view
+    pathMatch: 'full',
+  },]
 }, ];
 
 @NgModule({
