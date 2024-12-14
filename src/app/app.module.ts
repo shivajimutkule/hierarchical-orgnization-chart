@@ -15,6 +15,15 @@ import { GraphViewComponent } from './employee/graph-view/graph-view.component';
 import { EditEmployeeComponent } from './employee/edit-employee/edit-employee.component';
 import { DeleteEmployeeComponent } from './employee/delete-employee/delete-employee.component';
 import { ChangeManagerComponent } from './employee/change-manager/change-manager.component';
+import {OrganizationChartModule} from 'primeng/organizationchart';
+import { ContextMenuModule } from 'primeng/contextmenu'; // For the context menu
+
+import '@cds/core/icon/register.js';
+import { ClarityIcons, usersIcon, tableIcon } from '@cds/core/icon';
+
+// Register icons globally
+ClarityIcons.addIcons(usersIcon, tableIcon);
+
 
 @NgModule({
   declarations: [
@@ -33,6 +42,8 @@ import { ChangeManagerComponent } from './employee/change-manager/change-manager
     ReactiveFormsModule,
     AppRoutingModule,
     ClarityModule,
+    OrganizationChartModule,
+    ContextMenuModule,
     StoreModule.forRoot({ employeeState: employeeReducer }, {}),
   ],
   providers: [],

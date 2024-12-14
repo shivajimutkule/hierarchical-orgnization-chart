@@ -7,3 +7,7 @@
     color: white;
     border-color: var(--clr-btn-primary-outline-border-color);
   }
+
+  .active-button > cds-icon {
+    color: white;  /* Change icon color to white */
+  }

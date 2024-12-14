@@ -1,9 +1,28 @@
-<div class="graph-view">
-    <h2>Graph View</h2>
-    <p>Display the employee data in a graph format here.</p>
-    <ul>
-      <li *ngFor="let employee of employees$ | async">
-        {{ employee.name }} - {{ employee.designation }}
-      </li>
-    </ul>
-  </div>
+<p-organizationChart
+  [value]="(employees$ | async) || []"
+>
+  <ng-template let-node pTemplate="person">
+    <div class="employee-node">
+      <div class="node-header">
+        <span> <strong>{{ node.data.name }}</strong></span>
+        <span
+          class="settings-icon pi pi-cog"
+          (click)="openContextMenu($event, node)"
+        ></span>
+      </div>
+      <div class="node-body">
+        <div class="user-icon-container">
+          <span class="user-icon pi pi-user"></span>
+        </div>
+        <div class="desc-container">
+          <div class="designation">{{ node.data.designation }}</div>
+          <div class="email"><strong>Email:</strong> {{ node.data.email }}</div>
+          <div class="phone"><strong>Phone:</strong> {{ node.data.phone }}</div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-organizationChart>
+
+<!-- PrimeNG Context Menu -->
+<p-contextMenu #contextMenu [model]="contextMenuItems" [baseZIndex]="1000"></p-contextMenu>

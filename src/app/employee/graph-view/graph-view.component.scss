@@ -1,0 +1,73 @@
+:host ::ng-deep .p-organizationchart {
+    .p-person {
+        min-width: 300px;  /* Set desired width */
+        min-height: 112px; /* Set desired height */
+        padding: 0;
+        border: 0 none;
+        border-radius: 3px;
+        overflow: hidden; /* Prevent overflow of content */
+    }
+
+    .p-node-toggler {
+        display: none !important;
+    }
+}
+
+.employee-node {
+    text-align: center;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background: transparent;
+    position: relative;
+  }
+  
+  .node-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  .settings-icon {
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+  }
+
+  .user-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .user-icon {
+    cursor: pointer;
+    font-size: 32px;
+    color: #333;
+  }
+  
+  .node-body {
+    margin-top: 10px;
+    display: flex;
+    text-align: left;
+  }
+  
+  .node-body .name {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .node-body .designation {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .node-body .email,
+  .node-body .phone {
+    font-size: 12px;
+    color: #555;
+  }
+  
