@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { Employee } from "src/app/employee/employee.interface";
 import { addReportee, changeManager, deleteEmployee, editEmployee } from "./employee.actions";
-import { EMPLOYEES } from "src/app/employee/table-view/employee";
+import { EMPLOYEES } from "src/app/util/employee";
 
 export interface EmployeeState {
     employees: Employee[];
@@ -17,9 +17,11 @@ const initialState: EmployeeState = {
 export const employeeReducer = createReducer(
     initialState,
     on(addReportee, (state,  { employee }) => {
+        // new employee id
+        const maxId = state.employees.length > 0 ? Math.max(...state.employees.map(employee => employee.id)) : 0;
         return {
             ...state,
-            employees: [...state.employees, {...employee, id: state.employees.length + 1}],
+            employees: [...state.employees, {...employee, id: maxId + 1}],
         }
     }),
 

@@ -25,6 +25,7 @@
               clrInput
               formControlName="name"
               placeholder="Enter Employee Name"
+              maxlength="30"
               required
             />
             <clr-control-error *ngIf="reporteeForm.get('name')?.hasError('required')">
@@ -59,6 +60,7 @@
               clrInput
               formControlName="email"
               placeholder="Enter Email ID"
+              maxlength="50"
               required
             />
             <clr-control-error *ngIf="reporteeForm.get('email')?.hasError('required')">
@@ -77,6 +79,7 @@
               clrInput
               formControlName="phone"
               placeholder="Enter Phone Number"
+              maxlength="10"
               required
             />
             <clr-control-error *ngIf="reporteeForm.get('phone')?.hasError('required')">

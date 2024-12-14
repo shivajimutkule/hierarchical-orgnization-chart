@@ -16,31 +16,25 @@ export class ChangeManagerComponent {
   selectedEmployee: Employee | null = null;
 
   managers$: Observable<Employee[]> = this.store.select(selectAllEmployees);
-
   reporteeForm: FormGroup;
 
   constructor(private fb: FormBuilder, private store: Store) {
-        // Initialize reactive form
         this.reporteeForm = this.fb.group({
           manager: ['', Validators.required],
         });
   }
 
-  // Open the delete confirmation dialog
   open(employee: Employee) {
     this.selectedEmployee = employee;
-    console.log(employee);
     this.isChangeManagerDialogOpen = true;
   }
 
-  // Close the dialog without deleting
   closeDialog() {
     this.reporteeForm.reset();
     this.isChangeManagerDialogOpen = false;
     this.selectedEmployee = null;
   }
 
-  // Confirm deletion and dispatch the action
   confirmChangeManager() {
     if (this.reporteeForm.valid && this.selectedEmployee) {
       const reporteeData = this.reporteeForm.value;

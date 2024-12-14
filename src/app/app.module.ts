@@ -19,10 +19,10 @@ import {OrganizationChartModule} from 'primeng/organizationchart';
 import { ContextMenuModule } from 'primeng/contextmenu'; // For the context menu
 
 import '@cds/core/icon/register.js';
-import { ClarityIcons, usersIcon, tableIcon } from '@cds/core/icon';
+import { ClarityIcons, usersIcon, tableIcon, cogIcon, userIcon } from '@cds/core/icon';
 
 // Register icons globally
-ClarityIcons.addIcons(usersIcon, tableIcon);
+ClarityIcons.addIcons(usersIcon, tableIcon, cogIcon, userIcon);
 
 
 @NgModule({

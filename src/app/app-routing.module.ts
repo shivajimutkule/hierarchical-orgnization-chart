@@ -22,7 +22,7 @@ const routes: Routes = [{
       },
       {
         path: '', // Default route when no child is selected
-        redirectTo: 'grid', // Default to Graph view
+        redirectTo: 'graph', // Default to Graph view
         pathMatch: 'full',
       },
     ],

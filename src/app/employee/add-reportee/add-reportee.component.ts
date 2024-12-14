@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../state/app.state'; // Adjust the path to your AppState
-import { addReportee } from '../../state/employee/employee.actions'; // Adjust the path to your action file
+import { AppState } from '../../state/app.state';
+import { addReportee } from '../../state/employee/employee.actions';
 import { Employee } from '../employee.interface';
+import { DESIGNATION_LIST } from 'src/app/util/designations';
 
 @Component({
   selector: 'app-add-reportee',
@@ -11,23 +12,14 @@ import { Employee } from '../employee.interface';
   styleUrls: ['./add-reportee.component.scss'],
 })
 export class AddReporteeComponent {
-  public showDialog = false; // Receive dialog state from parent
+  public showDialog = false;
   public selectedEmployee!: Employee;
-
-  @Output() closeDialog = new EventEmitter<void>(); // Notify parent to close dialog
-
   reporteeForm: FormGroup;
 
-    // Predefined designations for the dropdown
-   public designations: string[] = [
-      'Head of Engineering',
-      'Engineering Manager',
-      'Head of Sales',
-      'DevOps Engineer',
-    ];
+  public designations: string[] = DESIGNATION_LIST;
 
   constructor(private fb: FormBuilder, private store: Store<AppState>) {
-    // Initialize reactive form
+    // Initialize employee reactive form
     this.reporteeForm = this.fb.group({
       name: ['', Validators.required],
       designation: ['', Validators.required],
@@ -45,19 +37,17 @@ export class AddReporteeComponent {
     if (this.reporteeForm.valid) {
       const reporteeData = this.reporteeForm.value;
       reporteeData.manager = this.selectedEmployee;
-      this.store.dispatch(addReportee({ employee: reporteeData })); // Dispatch action
+      this.store.dispatch(addReportee({ employee: reporteeData }));
       this.showDialog = false;
 
-      this.closeDialog.emit(); // Notify parent to close dialog
-      this.reporteeForm.reset(); // Reset form after submission
+      this.reporteeForm.reset();
     } else {
-      this.reporteeForm.markAllAsTouched(); // Mark fields to show validation errors
+      this.reporteeForm.markAllAsTouched();
     }
   }
 
   onCancel(): void {
     this.showDialog = false;
     this.reporteeForm.reset(); // Reset form
-    this.closeDialog.emit(); // Notify parent to close dialog
   }
 }

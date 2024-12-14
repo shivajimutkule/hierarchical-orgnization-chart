@@ -13,12 +13,15 @@
     }
 }
 
+:host ::ng-deep .p-contextmenu .p-menuitem > .p-menuitem-content .p-menuitem-link {
+    padding: 5px!important;
+}
+
 .employee-node {
     text-align: center;
     padding: 10px;
     border-radius: 3px;
     border: 1px solid #ddd;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     background: transparent;
     position: relative;
   }
@@ -32,21 +35,20 @@
   
   .settings-icon {
     cursor: pointer;
-    font-size: 16px;
-    color: #333;
+    font-size: 16px!important;
   }
 
   .user-icon-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 20px;
+    padding: 0px 10px 0px 0px;
   }
 
   .user-icon {
     cursor: pointer;
-    font-size: 32px;
-    color: #333;
+    height: 50px;
+    width: 50px;
   }
   
   .node-body {
@@ -62,12 +64,10 @@
 
   .node-body .designation {
     font-size: 14px;
-    color: #555;
   }
   
   .node-body .email,
   .node-body .phone {
     font-size: 12px;
-    color: #555;
   }
   

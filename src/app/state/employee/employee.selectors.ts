@@ -1,5 +1,4 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { AppState } from "../app.state";
 import { EmployeeState } from "./employee.reducers";
 
 // Select the employee feature state
