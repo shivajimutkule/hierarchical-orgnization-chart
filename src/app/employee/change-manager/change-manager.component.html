@@ -4,9 +4,9 @@
       <div class="text-justify light-color">Reassing this employee to report to a new manager. Select the desired manager from the available options to update the reporting hierarchy in the organization chart.</div>
       <form clrForm clrLayout="horizontal" [formGroup]="reporteeForm">
         <clr-input-container>
-          <label class="clr-col-2 clr-col-md-3" for="employee">Employee Name</label>
+          <label class="clr-col-4" for="employee">Employee Name</label>
           <input
-              class="clr-col-10 clr-col-md-9"
+              class="clr-col-8"
               id="employee"
               clrInput
               [value]="selectedEmployee?.name"
@@ -16,8 +16,9 @@
 
         <!-- Designation Dropdown -->
         <clr-select-container>
-            <label for="manager">Manager Name</label>
+            <label for="manager" class="clr-col-4">Manager Name</label>
             <select
+              class="clr-col-8"
               id="manager"
               clrSelect
               formControlName="manager"

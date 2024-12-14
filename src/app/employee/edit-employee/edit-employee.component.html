@@ -8,9 +8,10 @@
   
           <!-- Manager Name -->
           <clr-input-container>
-              <label for="manager">Manager Name</label>
+              <label for="manager" class="clr-col-4">Manager Name</label>
               <input
                   id="manager"
+                  class="clr-col-8"
                   clrInput
                   [value]="selectedEmployee.manager?.name ?? '-'"
                   readonly
@@ -19,9 +20,10 @@
   
           <!-- Employee Name -->
           <clr-input-container>
-            <label for="name">Employee Name</label>
+            <label for="name" class="clr-col-4">Employee Name</label>
             <input
               id="name"
+              class="clr-col-8"
               clrInput
               formControlName="name"
               placeholder="Enter Employee Name"
@@ -35,9 +37,10 @@
   
           <!-- Designation Dropdown -->
           <clr-select-container>
-              <label for="designation">Designation</label>
+              <label for="designation" class="clr-col-4">Designation</label>
               <select
                 id="designation"
+                class="clr-col-8"
                 clrSelect
                 formControlName="designation"
                 required
@@ -54,9 +57,10 @@
   
           <!-- Email -->
           <clr-input-container>
-            <label for="email">Email ID</label>
+            <label for="email"class="clr-col-4">Email ID</label>
             <input
               id="email"
+              class="clr-col-8"
               clrInput
               formControlName="email"
               placeholder="Enter Email ID"
@@ -73,9 +77,10 @@
   
           <!-- Phone Number -->
           <clr-input-container>
-            <label for="phone">Phone Number</label>
+            <label for="phone" class="clr-col-4">Phone Number</label>
             <input
               id="phone"
+              class="clr-col-8"
               clrInput
               formControlName="phone"
               placeholder="Enter Phone Number"

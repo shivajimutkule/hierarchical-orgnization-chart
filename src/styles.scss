@@ -6,3 +6,31 @@ clr-datagrid {
 .light-color {
   color: var(--clr-forms-subtext-color);
 }
+
+clr-input-container > .clr-control-container,
+clr-select-container > .clr-control-container,
+.clr-input-wrapper,
+.clr-select-wrapper,
+.clr-input-wrapper > input,
+.clr-select-wrapper > select {
+    width: 100%!important;
+}
+
+clr-input-container > .clr-control-container,
+clr-select-container > .clr-control-container {
+    display: flex;
+    flex-direction: column;
+}
+
+clr-control-error .clr-validate-icon, clr-error .clr-validate-icon {
+    display: none; /* Hides the error icon */
+}
+
+select {
+    padding-right: 6px!important;
+}
+
+.clr-form {
+    padding-right: 0px!important;
+    padding-left: 0px!important;
+}

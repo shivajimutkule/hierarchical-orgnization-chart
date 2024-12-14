@@ -9,8 +9,9 @@
 
         <!-- Manager Name -->
         <clr-input-container>
-            <label for="manager">Manager Name</label>
+            <label for="manager" class="clr-col-4">Manager Name</label>
             <input
+                class="clr-col-8"
                 id="manager"
                 clrInput
                 [value]="selectedEmployee.name"
@@ -20,9 +21,10 @@
 
         <!-- Employee Name -->
         <clr-input-container>
-          <label for="name">Employee Name</label>
+          <label for="name" class="clr-col-4">Employee Name</label>
           <input
             id="name"
+            class="clr-col-8"
             clrInput
             formControlName="name"
             placeholder="Enter employee name"
@@ -36,8 +38,9 @@
 
         <!-- Designation Dropdown -->
         <clr-select-container>
-            <label for="designation">Designation</label>
+            <label for="designation" class="clr-col-4">Designation</label>
             <select
+              class="clr-col-8"
               id="designation"
               clrSelect
               formControlName="designation"
@@ -55,9 +58,10 @@
 
         <!-- Email -->
         <clr-input-container>
-          <label for="email">Email</label>
+          <label for="email" class="clr-col-4">Email</label>
           <input
             id="email"
+            class="clr-col-8"
             clrInput
             formControlName="email"
             placeholder="Enter email address"
@@ -74,9 +78,10 @@
 
         <!-- Phone Number -->
         <clr-input-container>
-          <label for="phone">Phone Number</label>
+          <label for="phone" class="clr-col-4">Phone Number</label>
           <input
             id="phone"
+            class="clr-col-8"
             clrInput
             formControlName="phone"
             placeholder="Enter 10-digit phone number"
