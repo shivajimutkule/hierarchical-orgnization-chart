@@ -1,10 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { Employee } from '../employee.interface';
 import { EmployeeService } from 'src/app/services/employee.service';
-import { map, Observable, startWith } from 'rxjs';
+import { map, Observable, startWith, switchMap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectAllEmployees } from 'src/app/state/employee/employee.selectors';
 import { MenuItem, TreeNode } from 'primeng/api';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-graph-view',
@@ -13,13 +14,15 @@ import { MenuItem, TreeNode } from 'primeng/api';
 })
 export class GraphViewComponent {
 
-  employees$: Observable<TreeNode[]> = this.store.select(selectAllEmployees).pipe(
-    startWith([]),
-    map(data => this.convertToOrgChartFormat(data) || [])
-  );
+  employees$: Observable<TreeNode[]> = new Observable<TreeNode[]>();
   @ViewChild('contextMenu') contextMenu: any;
+  
 
-  constructor(private store: Store, private employeeService: EmployeeService) {}
+  constructor(private store: Store,
+    private employeeService: EmployeeService,
+    private router: Router,
+    private route: ActivatedRoute,
+) {}
   
   data: TreeNode[] = [];
   contextMenuItems: MenuItem[] = [];
@@ -50,11 +53,27 @@ export class GraphViewComponent {
         command: () => this.changeReportingLine(),
       },
     ];
+
+    this.employees$ = this.route.params.pipe(
+      // Step 1: Check for 'id' parameter
+      map(params => parseInt(params['id'] || "0")),
+      // Step 2: Use the 'id' or load the default chart
+      switchMap(id => {
+        return this.store.select(selectAllEmployees).pipe(
+          map(data => this.convertToOrgChartFormat(id, data) || [])
+        )
+      })
+    );
   }
 
   openContextMenu(event: MouseEvent, node: any): void {
     this.selectedNode = node;
     this.contextMenu.show(event);
+  }
+
+  onNodeSelect(event: any): void {
+    console.log('Selected node:', event.node);
+    this.router.navigate(['employee', 'graph', event.node.data.id]);
   }
 
   // Context Menu Actions
@@ -74,7 +93,7 @@ export class GraphViewComponent {
     this.employeeService.triggerOpenChangeManagerDialog(this.selectedNode.data);
   }
 
-  convertToOrgChartFormat(employees: Employee[]): TreeNode[] {
+  convertToOrgChartFormat(firstEmployeeId: number, employees: Employee[]): TreeNode[] {
     const employeeMap = new Map();
   
     // Step 1: Initialize all employees in the map
@@ -89,7 +108,7 @@ export class GraphViewComponent {
       });
     });
   
-    const orgChart: TreeNode[] = [];
+    const orgChart: TreeNode<Employee>[] = [];
   
     // Step 2: Build hierarchy
     employees.forEach(emp => {
@@ -105,7 +124,7 @@ export class GraphViewComponent {
       }
     });
   
-    return orgChart;
+    return firstEmployeeId ? [employeeMap.get(firstEmployeeId)] : orgChart;
   }
   
 }

@@ -1,5 +1,8 @@
 <p-organizationChart
   [value]="(employees$ | async) || []"
+  selectionMode="single"
+  (onNodeSelect)="onNodeSelect($event)"
+
 >
   <ng-template let-node pTemplate="person">
     <div class="employee-node">

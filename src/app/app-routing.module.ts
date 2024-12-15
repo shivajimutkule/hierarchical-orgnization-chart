@@ -21,6 +21,10 @@ const routes: Routes = [{
         component: TableViewComponent,
       },
       {
+        path: 'graph/:id', // Nested path for the Graph View with employee id
+        component: GraphViewComponent,
+      },
+      {
         path: '', // Default route when no child is selected
         redirectTo: 'graph', // Default to Graph view
         pathMatch: 'full',
