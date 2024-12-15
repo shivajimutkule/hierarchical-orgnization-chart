@@ -23,8 +23,8 @@ export class AddReporteeComponent {
     this.reporteeForm = this.fb.group({
       name: ['', Validators.required],
       designation: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      email: ['', [Validators.email]],
+      phone: ['', [Validators.pattern(/^\d{10}$/)]],
     });
   }
 

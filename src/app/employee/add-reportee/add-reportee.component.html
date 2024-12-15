@@ -66,11 +66,7 @@
             formControlName="email"
             placeholder="Enter email address"
             maxlength="50"
-            required
           />
-          <clr-control-error *ngIf="reporteeForm.get('email')?.hasError('required')">
-            Email is required.
-          </clr-control-error>
           <clr-control-error *ngIf="reporteeForm.get('email')?.hasError('email')">
             Please enter a valid email address.
           </clr-control-error>
@@ -86,11 +82,7 @@
             formControlName="phone"
             placeholder="Enter 10-digit phone number"
             maxlength="10"
-            required
           />
-          <clr-control-error *ngIf="reporteeForm.get('phone')?.hasError('required')">
-            Phone Number is required.
-          </clr-control-error>
           <clr-control-error *ngIf="reporteeForm.get('phone')?.hasError('pattern')">
             Please enter a valid 10-digit phone number.
           </clr-control-error>

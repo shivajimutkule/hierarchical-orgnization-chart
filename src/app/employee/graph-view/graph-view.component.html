@@ -16,8 +16,8 @@
         </div>
         <div class="desc-container">
           <div class="designation">{{ node.data.designation }}</div>
-          <div class="email"><strong>Email:</strong> {{ node.data.email }}</div>
-          <div class="phone"><strong>Phone:</strong> {{ node.data.phone }}</div>
+          <div class="email" *ngIf="node.data.email"><strong>Email:</strong> {{ node.data.email }}</div>
+          <div class="phone" *ngIf="node.data.phone"><strong>Phone:</strong> {{ node.data.phone }}</div>
         </div>
       </div>
     </div>
